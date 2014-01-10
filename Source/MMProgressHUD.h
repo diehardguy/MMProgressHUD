@@ -30,7 +30,8 @@ typedef NS_ENUM(NSInteger, MMProgressHUDPresentationStyle){
     MMProgressHUDPresentationStyleSwingRight,
     MMProgressHUDPresentationStyleBalloon,
     MMProgressHUDPresentationStyleFade,
-    MMProgressHUDPresentationStyleNone
+    MMProgressHUDPresentationStyleNone,
+    MMProgressHUDPresentationStyleExpandShrink
 };
 
 typedef NS_ENUM(NSInteger, MMProgressHUDWindowOverlayMode){
@@ -133,11 +134,24 @@ This message will be presented to the user when a cancelBlock is present after t
 
 /**
  The value determining the shadow radius.
- This value is used only of showsShadow is set to YES.
  By default, this is set to 0.0f.
  */
 
 @property (nonatomic, assign) CGFloat shadowRadius;
+
+/**
+ The value determining the shadow opacity.
+ By default, this is set to 0.0f.
+ */
+
+@property (nonatomic, assign) CGFloat shadowOpacity;
+
+/**
+ The value determining the corner radius.
+ By default, this is set to 5.0f.
+ */
+
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 /** The class to use for the progress view. Instances of this class must confrom to the MMProgressView protocol. When setting a custom value this value must be set before setting the indeterminate property to YES.
  

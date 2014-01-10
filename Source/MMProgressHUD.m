@@ -34,6 +34,8 @@ NSString * const MMProgressHUDAnimationWindowFadeOut = @"mm-progress-hud-window-
 NSString * const MMProgressHUDAnimationKeyShowAnimation = @"show";
 NSString * const MMProgressHUDAnimationKeyDismissAnimation = @"dismiss";
 CGFloat const MMProgressHUDDefaultShadowRadius = 0.0f;
+CGFloat const MMProgressHUDDefaultShadowOpacity = 0.0f;
+CGFloat const MMProgressHUDDefaultCornerRadius = 5.0f;
 
 NSUInteger const MMProgressHUDConfirmationPulseCount = 8;//Keep this number even
 
@@ -191,6 +193,8 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
         self.hud = [[MMHud alloc] init];
         self.hud.delegate = self;
         self.hud.layer.shadowRadius = MMProgressHUDDefaultShadowRadius;
+        self.hud.layer.shadowOpacity = MMProgressHUDDefaultShadowOpacity;
+        self.hud.layer.cornerRadius = MMProgressHUDDefaultCornerRadius;
         
         UIColor *imageFill = [UIColor colorWithWhite:1.f alpha:1.f];
         self.errorImage = [MMVectorImage
@@ -258,6 +262,22 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
 
 -(CGFloat)shadowRadius {
     return self.hud.layer.shadowRadius;
+}
+
+-(void)setShadowOpacity:(CGFloat)shadowOpacity {
+    [self.hud.layer setShadowOpacity:shadowOpacity];
+}
+
+-(CGFloat)shadowOpacity {
+    return self.hud.layer.shadowOpacity;
+}
+
+-(void)setCornerRadius:(CGFloat)cornerRadius {
+    [self.hud.layer setCornerRadius:cornerRadius];
+}
+
+-(CGFloat)cornerRadius {
+    return self.hud.layer.cornerRadius;
 }
 
 - (CGFloat)progress {
@@ -501,6 +521,8 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
         case MMProgressHUDPresentationStyleDrop:
             [self _showWithDropAnimation];
             break;
+        case MMProgressHUDPresentationStyleExpandShrink:
+            [self _showWithExpandAnimation];
         case MMProgressHUDPresentationStyleExpand:
             [self _showWithExpandAnimation];
             break;
@@ -565,6 +587,9 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
     switch (self.presentationStyle) {
         case MMProgressHUDPresentationStyleDrop:
             [self _dismissWithDropAnimation];
+            break;
+        case MMProgressHUDPresentationStyleExpandShrink:
+            [self _dismissWithShrinkAnimation];
             break;
         case MMProgressHUDPresentationStyleExpand:
             [self _dismissWithExpandAnimation];
