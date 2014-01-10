@@ -134,7 +134,7 @@ This message will be presented to the user when a cancelBlock is present after t
 /**
  The value determining the shadow radius.
  This value is used only of showsShadow is set to YES.
- By default, this is set to 10.0f.
+ By default, this is set to 0.0f.
  */
 
 @property (nonatomic, assign) CGFloat shadowRadius;

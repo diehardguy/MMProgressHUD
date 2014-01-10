@@ -33,7 +33,7 @@ NSString * const MMProgressHUDAnimationDismiss = @"mm-progress-hud-dismiss-anima
 NSString * const MMProgressHUDAnimationWindowFadeOut = @"mm-progress-hud-window-fade-out";
 NSString * const MMProgressHUDAnimationKeyShowAnimation = @"show";
 NSString * const MMProgressHUDAnimationKeyDismissAnimation = @"dismiss";
-CGFloat const MMProgressHUDDefaultShadowRadius = 10.0f;
+CGFloat const MMProgressHUDDefaultShadowRadius = 0.0f;
 
 NSUInteger const MMProgressHUDConfirmationPulseCount = 8;//Keep this number even
 
