@@ -33,6 +33,7 @@ NSString * const MMProgressHUDAnimationDismiss = @"mm-progress-hud-dismiss-anima
 NSString * const MMProgressHUDAnimationWindowFadeOut = @"mm-progress-hud-window-fade-out";
 NSString * const MMProgressHUDAnimationKeyShowAnimation = @"show";
 NSString * const MMProgressHUDAnimationKeyDismissAnimation = @"dismiss";
+CGFloat const MMProgressHUDDefaultShadowRadius = 10.0f;
 
 NSUInteger const MMProgressHUDConfirmationPulseCount = 8;//Keep this number even
 
@@ -189,7 +190,8 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
     if ( (self = [super initWithFrame:CGRectZero]) ) {
         self.hud = [[MMHud alloc] init];
         self.hud.delegate = self;
-
+        self.hud.layer.shadowRadius = MMProgressHUDDefaultShadowRadius;
+        
         UIColor *imageFill = [UIColor colorWithWhite:1.f alpha:1.f];
         self.errorImage = [MMVectorImage
                            vectorImageShapeOfType:MMVectorShapeTypeX
@@ -248,6 +250,14 @@ CGSize const MMProgressHUDDefaultImageSize = {37.f, 37.f};
     
     self.hud.accessibilityValue = [NSString stringWithFormat:@"%i%%", (int)(progress/1.f*100)];
     UIAccessibilityPostNotification(UIAccessibilityScreenChangedNotification, [NSString stringWithFormat:@"%@ %@", self.hud.accessibilityLabel, self.hud.accessibilityValue]);
+}
+
+-(void)setShadowRadius:(CGFloat)shadowRadius {
+    [self.hud.layer setShadowRadius:shadowRadius];
+}
+
+-(CGFloat)shadowRadius {
+    return self.hud.layer.shadowRadius;
 }
 
 - (CGFloat)progress {

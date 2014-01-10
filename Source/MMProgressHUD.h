@@ -131,6 +131,14 @@ This message will be presented to the user when a cancelBlock is present after t
  */
 @property (nonatomic, strong, readonly) MMProgressHUDOverlayView *overlayView;
 
+/**
+ The value determining the shadow radius.
+ This value is used only of showsShadow is set to YES.
+ By default, this is set to 10.0f.
+ */
+
+@property (nonatomic, assign) CGFloat shadowRadius;
+
 /** The class to use for the progress view. Instances of this class must confrom to the MMProgressView protocol. When setting a custom value this value must be set before setting the indeterminate property to YES.
  
  Defaults to MMRadialProgressView
